@@ -4,6 +4,7 @@ using Evented.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Evented.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230117192548_DbDesingCreated")]
+    partial class DbDesingCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,48 +292,6 @@ namespace Evented.Web.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
-                            AccessFailedCount = 0,
-                            Address = "x",
-                            Birth = new DateTime(2023, 1, 17, 22, 42, 53, 798, DateTimeKind.Local).AddTicks(4351),
-                            ConcurrencyStamp = "295770ce-3f4b-4677-b0af-8d200fb60b8f",
-                            CreatedAt = new DateTime(2023, 1, 17, 22, 42, 53, 798, DateTimeKind.Local).AddTicks(4359),
-                            EmailConfirmed = true,
-                            FirstName = "Furkan",
-                            Image = "X",
-                            LastName = "Koc",
-                            LockoutEnabled = false,
-                            NormalizedUserName = "MYADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB1Kx+3marakJSiik2ftmeXYGjAyz7JdOYBMGnSkE+rmq0CTpNRz3JrkhmWp49iXew==",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd1",
-                            TwoFactorEnabled = false,
-                            UserName = "myadmin"
-                        },
-                        new
-                        {
-                            Id = "b74ddd14-6340-4840-95c2-db12554843e6",
-                            AccessFailedCount = 0,
-                            Address = "x",
-                            Birth = new DateTime(2023, 1, 17, 22, 42, 53, 805, DateTimeKind.Local).AddTicks(1909),
-                            ConcurrencyStamp = "295770ce-3f4b-4677-b0af-8d200fb60b87",
-                            CreatedAt = new DateTime(2023, 1, 17, 22, 42, 53, 805, DateTimeKind.Local).AddTicks(1911),
-                            EmailConfirmed = true,
-                            FirstName = "Furkan",
-                            Image = "X",
-                            LastName = "Koc",
-                            LockoutEnabled = false,
-                            NormalizedUserName = "MYUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEENuY+lUOFhdwYOzqovdFhTq5ok9iNdrsoUef1TuGlH2IN7NF4yUwLSIKefcrIbxDg==",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd9",
-                            TwoFactorEnabled = false,
-                            UserName = "myuser"
-                        });
                 });
 
             modelBuilder.Entity("EventUser", b =>
@@ -374,22 +334,6 @@ namespace Evented.Web.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "fab4fac1-c546-41de-aebc-a14da6895711",
-                            ConcurrencyStamp = "1",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "c7b013f0-5201-4317-abd8-c211f91b7330",
-                            ConcurrencyStamp = "2",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -479,18 +423,6 @@ namespace Evented.Web.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
-                            RoleId = "fab4fac1-c546-41de-aebc-a14da6895711"
-                        },
-                        new
-                        {
-                            UserId = "b74ddd14-6340-4840-95c2-db12554843e6",
-                            RoleId = "c7b013f0-5201-4317-abd8-c211f91b7330"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

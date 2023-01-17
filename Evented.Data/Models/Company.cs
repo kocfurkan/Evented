@@ -16,8 +16,9 @@ namespace Evented.Data.Models
         public string Description { get; set; }
         [Required, StringLength(100)]
         public string FieldofWork { get; set; }
+        public User OwnedBy { get; set; }
         public List<Event> Events { get; set; }
-        public List<Notification> Notifications { get; set; }
+        public List<Notification>? Notifications { get; set; }
         public DateTime CreatedAt { get ; set ; }
         public DateTime UpdatedAt { get ; set ; }
     }

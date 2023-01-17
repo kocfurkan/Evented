@@ -21,10 +21,12 @@ namespace Evented.Web.Data
             builder.Entity<Event>().HasOne(e => e.CreatorUser).WithMany(x => x.UserCreated).HasForeignKey(y => y.CreatorId).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<Event>().HasMany(e => e.UserJoined).WithMany(y => y.EventJoined);
             builder.Entity<Event>().HasMany(e => e.Comments).WithOne(z => z.Event).HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<Company>().HasMany(e => e.Notifications).WithOne(x => x.Company).HasForeignKey(x => x.CompanyId).OnDelete(DeleteBehavior.NoAction);
 
             base.OnModelCreating(builder);
 
             this.SeedUsers(builder);
+            this.SeedRoles(builder);
             this.SeedUserRoles(builder);
         }
 
@@ -34,7 +36,7 @@ namespace Evented.Web.Data
 
             User user = new User()
             {
-                Id = "b74ddd14-6340-4840-95c2-db12554843e5",
+                Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                 AccessFailedCount = 0,
                 ConcurrencyStamp = "295770ce-3f4b-4677-b0af-8d200fb60b8f",
                 UserName = "myadmin",
@@ -57,10 +59,10 @@ namespace Evented.Web.Data
                 Id = "b74ddd14-6340-4840-95c2-db12554843e6",
                 AccessFailedCount = 0,
                 ConcurrencyStamp = "295770ce-3f4b-4677-b0af-8d200fb60b87",
-                UserName = "user",
+                UserName = "myuser",
                 NormalizedUserName = "MYUSER",
                 SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd9",
-                PasswordHash = passwordHasher.HashPassword(null, "Admin*123"),
+                PasswordHash = passwordHasher.HashPassword(null, "User*123"),
                 EmailConfirmed = true,
                 LockoutEnabled = false,
                 TwoFactorEnabled = false,
@@ -81,18 +83,18 @@ namespace Evented.Web.Data
     private void SeedRoles(ModelBuilder builder)
     {
         builder.Entity<IdentityRole>().HasData(
-            new IdentityRole() { Id = "fab4fac1-c546-41de-aebc-a14da6895711", Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "Admin" },
-            new IdentityRole() { Id = "c7b013f0-5201-4317-abd8-c211f91b7330", Name = "User", ConcurrencyStamp = "2", NormalizedName = "USER" },
-            new IdentityRole() { Id = "c7b013f0-5201-4317-abd8-c211f91b7335", Name = "Company", ConcurrencyStamp = "3", NormalizedName = "COMPANY" }
+            new IdentityRole() { Id = "fab4fac1-c546-41de-aebc-a14da6895711", Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "ADMIN" },
+            new IdentityRole() { Id = "c7b013f0-5201-4317-abd8-c211f91b7330", Name = "User", ConcurrencyStamp = "2", NormalizedName = "USER" }
             );
     }
 
     private void SeedUserRoles(ModelBuilder builder)
     {
         builder.Entity<IdentityUserRole<string>>().HasData(
-            new IdentityUserRole<string>() { RoleId = "fab4fac1-c546-41de-aebc-a14da6895711", UserId = "b74ddd14-6340-4840-95c2-db12554843e5" },
+            new IdentityUserRole<string>() { RoleId = "fab4fac1-c546-41de-aebc-a14da6895711", UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9" },
             new IdentityUserRole<string>() { RoleId = "c7b013f0-5201-4317-abd8-c211f91b7330", UserId = "b74ddd14-6340-4840-95c2-db12554843e6" }
             );
+
 
 
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Evented.Web.Data.Migrations
 {
-    public partial class DbDesignCreated : Migration
+    public partial class DbDesingCreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,8 +41,7 @@ namespace Evented.Web.Data.Migrations
                 name: "Image",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "LastName",
@@ -60,12 +59,19 @@ namespace Evented.Web.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     FieldofWork = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    OwnedById = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Company", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Company_AspNetUsers_OwnedById",
+                        column: x => x.OwnedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,8 +188,7 @@ namespace Evented.Web.Data.Migrations
                         name: "FK_Notification_Company_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Company",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Notification_Event_EventId",
                         column: x => x.EventId,
@@ -201,6 +206,11 @@ namespace Evented.Web.Data.Migrations
                 name: "IX_Comment_UserId",
                 table: "Comment",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Company_OwnedById",
+                table: "Company",
+                column: "OwnedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Event_CreatorId",

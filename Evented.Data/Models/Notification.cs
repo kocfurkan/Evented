@@ -19,6 +19,7 @@ namespace Evented.Data.Models
         public bool IsValid { get ; set ; } = true;
         public bool IsAccepted { get ; set ; } = false;
         public User User { get ; set ; }
+        public int CompanyId { get ; set ; }    
         public Company Company { get ; set ; }  
         public Event Event { get ; set ; }
     }
