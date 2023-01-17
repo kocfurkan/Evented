@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Evented.Data.Models
 {
-    public class Company
+    public class Company:IBaseModel
     {
         public int Id { get; set; }
-        //Add Event Relation
+        [Required, StringLength(50)]
+        public string Name { get; set; }
+        [Required, StringLength(100)]
+        public string Description { get; set; }
+        [Required, StringLength(100)]
+        public string FieldofWork { get; set; }
+        public List<Event> Events { get; set; }
+        public List<Notification> Notifications { get; set; }
+        public DateTime CreatedAt { get ; set ; }
+        public DateTime UpdatedAt { get ; set ; }
     }
 }
