@@ -29,5 +29,6 @@ namespace Evented.Data.Models
         public List<User> UserJoined { get; set; }
         public List<Comment> Comments { get; set; }
         public Company? HiredCompany { get; set; }
+        public ImageGallery? ImageGallery { get; set; }
     }
 }

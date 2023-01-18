@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evented.Web", "Evented.Web\Evented.Web.csproj", "{D0C67598-5B60-4814-94DC-DBB78CFD36A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evented.Web", "Evented.Web\Evented.Web.csproj", "{D0C67598-5B60-4814-94DC-DBB78CFD36A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evented.Data", "Evented.Data\Evented.Data.csproj", "{FBD2BDA0-09DD-48AD-B1CD-718813823218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evented.Data", "Evented.Data\Evented.Data.csproj", "{FBD2BDA0-09DD-48AD-B1CD-718813823218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{77C53B26-3956-43EB-A509-5A6142CEF3BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evented.Application", "Application\Evented.Application.csproj", "{77C53B26-3956-43EB-A509-5A6142CEF3BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{0BABBDDD-79E1-4F5C-ADC8-C93934C60179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evented.Common", "Common\Evented.Common.csproj", "{0BABBDDD-79E1-4F5C-ADC8-C93934C60179}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
