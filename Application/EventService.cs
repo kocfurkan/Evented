@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evented.Data.Models
+namespace Evented.Service
 {
-    public class Image
+    public class EventService
     {
-        public int Id { get; set; }
-        public string Path { get; set; }
+     
     }
 }

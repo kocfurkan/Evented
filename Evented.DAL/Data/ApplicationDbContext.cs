@@ -1,4 +1,4 @@
-﻿using Evented.Data.Models;
+﻿using Evented.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

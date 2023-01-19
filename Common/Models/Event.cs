@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evented.Data.Models
+namespace Evented.Domain.Models
 {
  
     public class Event : IBaseModel
@@ -24,10 +24,11 @@ namespace Evented.Data.Models
         public bool IsValid { get; set; } = true;
         public DateTime BeginsAt { get; set; }
         public DateTime EndsAt { get; set; }
+        public int joineeLimit { get; set; }    
         public string CreatorId { get; set; }
         public User CreatorUser { get; set; }
-        public List<User> UserJoined { get; set; }
-        public List<Comment> Comments { get; set; }
+        public List<User>? UserJoined { get; set; }
+        public List<Comment>? Comments { get; set; }
         public Company? HiredCompany { get; set; }
         public ImageGallery? ImageGallery { get; set; }
     }

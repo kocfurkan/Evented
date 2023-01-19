@@ -4,6 +4,7 @@ using Evented.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Evented.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230119074124_add")]
+    partial class add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace Evented.Web.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Evented.Data.Models.Comment", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +58,7 @@ namespace Evented.Web.Data.Migrations
                     b.ToTable("Comment");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Company", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,7 +98,7 @@ namespace Evented.Web.Data.Migrations
                     b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Event", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -155,7 +157,7 @@ namespace Evented.Web.Data.Migrations
                     b.ToTable("Event");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Image", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,7 +179,7 @@ namespace Evented.Web.Data.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.ImageGallery", b =>
+            modelBuilder.Entity("Evented.Domain.Models.ImageGallery", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -214,7 +216,7 @@ namespace Evented.Web.Data.Migrations
                     b.ToTable("ImageGalleries");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Notification", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Notification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -265,7 +267,7 @@ namespace Evented.Web.Data.Migrations
                     b.ToTable("Notification");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.User", b =>
+            modelBuilder.Entity("Evented.Domain.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -365,7 +367,7 @@ namespace Evented.Web.Data.Migrations
                             LastName = "Koc",
                             LockoutEnabled = false,
                             NormalizedUserName = "MYADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHSoB1Ko3BslHSVsYnY93+TfDmVrGeLvHxugI2zfdPjP2QtAVS4On87S/w2poNSgKQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK9IGvTu/eRCC6QVBuALUTCmYLhmqm+fYuBQxxwDaw1Hi2taJOAboboc2J7+lbJmSw==",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd1",
                             TwoFactorEnabled = false,
@@ -385,7 +387,7 @@ namespace Evented.Web.Data.Migrations
                             LastName = "Koc",
                             LockoutEnabled = false,
                             NormalizedUserName = "MYUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFtpsygNlDTB4/AjMfri7U3k/Z+jxHBG/6OA1qBsf1FzO/KjyBLraYuCy6N8pop6eA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG6VKXKVSmtahgi0d9pcH3E0Kj9mTAnDCOrOv6GUdtDIvJNfLvD5GxUsRpxWPgHCxw==",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd9",
                             TwoFactorEnabled = false,
@@ -573,15 +575,15 @@ namespace Evented.Web.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Comment", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Comment", b =>
                 {
-                    b.HasOne("Evented.Data.Models.Event", "Event")
+                    b.HasOne("Evented.Domain.Models.Event", "Event")
                         .WithMany("Comments")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Evented.Data.Models.User", "User")
+                    b.HasOne("Evented.Domain.Models.User", "User")
                         .WithMany("Comment")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -592,9 +594,9 @@ namespace Evented.Web.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Company", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Company", b =>
                 {
-                    b.HasOne("Evented.Data.Models.User", "OwnedBy")
+                    b.HasOne("Evented.Domain.Models.User", "OwnedBy")
                         .WithMany("Companies")
                         .HasForeignKey("OwnedById")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -603,15 +605,15 @@ namespace Evented.Web.Data.Migrations
                     b.Navigation("OwnedBy");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Event", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Event", b =>
                 {
-                    b.HasOne("Evented.Data.Models.User", "CreatorUser")
+                    b.HasOne("Evented.Domain.Models.User", "CreatorUser")
                         .WithMany("UserCreated")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Evented.Data.Models.Company", "HiredCompany")
+                    b.HasOne("Evented.Domain.Models.Company", "HiredCompany")
                         .WithMany("Events")
                         .HasForeignKey("HiredCompanyId");
 
@@ -620,43 +622,43 @@ namespace Evented.Web.Data.Migrations
                     b.Navigation("HiredCompany");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Image", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Image", b =>
                 {
-                    b.HasOne("Evented.Data.Models.ImageGallery", null)
+                    b.HasOne("Evented.Domain.Models.ImageGallery", null)
                         .WithMany("Image")
                         .HasForeignKey("ImageGalleryId");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.ImageGallery", b =>
+            modelBuilder.Entity("Evented.Domain.Models.ImageGallery", b =>
                 {
-                    b.HasOne("Evented.Data.Models.Company", "Company")
+                    b.HasOne("Evented.Domain.Models.Company", "Company")
                         .WithOne("ImageGallery")
-                        .HasForeignKey("Evented.Data.Models.ImageGallery", "CompanyId");
+                        .HasForeignKey("Evented.Domain.Models.ImageGallery", "CompanyId");
 
-                    b.HasOne("Evented.Data.Models.Event", "Event")
+                    b.HasOne("Evented.Domain.Models.Event", "Event")
                         .WithOne("ImageGallery")
-                        .HasForeignKey("Evented.Data.Models.ImageGallery", "EventId");
+                        .HasForeignKey("Evented.Domain.Models.ImageGallery", "EventId");
 
                     b.Navigation("Company");
 
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Notification", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Notification", b =>
                 {
-                    b.HasOne("Evented.Data.Models.Company", "Company")
+                    b.HasOne("Evented.Domain.Models.Company", "Company")
                         .WithMany("Notifications")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Evented.Data.Models.Event", "Event")
+                    b.HasOne("Evented.Domain.Models.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Evented.Data.Models.User", "User")
+                    b.HasOne("Evented.Domain.Models.User", "User")
                         .WithMany("Notifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -671,13 +673,13 @@ namespace Evented.Web.Data.Migrations
 
             modelBuilder.Entity("EventUser", b =>
                 {
-                    b.HasOne("Evented.Data.Models.Event", null)
+                    b.HasOne("Evented.Domain.Models.Event", null)
                         .WithMany()
                         .HasForeignKey("EventJoinedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Evented.Data.Models.User", null)
+                    b.HasOne("Evented.Domain.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserJoinedId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -695,7 +697,7 @@ namespace Evented.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Evented.Data.Models.User", null)
+                    b.HasOne("Evented.Domain.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -704,7 +706,7 @@ namespace Evented.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Evented.Data.Models.User", null)
+                    b.HasOne("Evented.Domain.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -719,7 +721,7 @@ namespace Evented.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Evented.Data.Models.User", null)
+                    b.HasOne("Evented.Domain.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -728,14 +730,14 @@ namespace Evented.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Evented.Data.Models.User", null)
+                    b.HasOne("Evented.Domain.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Company", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Company", b =>
                 {
                     b.Navigation("Events");
 
@@ -745,19 +747,19 @@ namespace Evented.Web.Data.Migrations
                     b.Navigation("Notifications");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.Event", b =>
+            modelBuilder.Entity("Evented.Domain.Models.Event", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("ImageGallery");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.ImageGallery", b =>
+            modelBuilder.Entity("Evented.Domain.Models.ImageGallery", b =>
                 {
                     b.Navigation("Image");
                 });
 
-            modelBuilder.Entity("Evented.Data.Models.User", b =>
+            modelBuilder.Entity("Evented.Domain.Models.User", b =>
                 {
                     b.Navigation("Comment");
 

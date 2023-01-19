@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evented.Data.Models
+namespace Evented.Domain.Models
 {
     public class User : IdentityUser
     {

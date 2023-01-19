@@ -9,6 +9,9 @@ namespace Application
 {
     public class MapConfig:Profile
     {
-        
+        public MapConfig()
+        {
+
+        }
     }
 }

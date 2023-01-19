@@ -18,4 +18,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Evented.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
