@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Evented.Common.ViewModels;
+using Evented.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace Application
     {
         public MapConfig()
         {
+            CreateMap<Event,EventVM>().ReverseMap();
 
         }
     }

@@ -21,5 +21,7 @@ namespace Evented.Domain.Models
         public List<Notification>? Notifications { get; set; }
         public List<Comment>? Comment { get; set; }
         public List<Company>? Companies { get; set; }
+
+       
     }
 }

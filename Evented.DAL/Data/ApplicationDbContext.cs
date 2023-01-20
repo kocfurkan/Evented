@@ -101,6 +101,7 @@ namespace Evented.Web.Data
 
         }
         DbSet<Image> Images { get; set; }   
-        DbSet<ImageGallery> ImageGalleries { get; set; }    
+        DbSet<ImageGallery> ImageGalleries { get; set; }
+        DbSet<Event> Event { get; set; }
     }
 }

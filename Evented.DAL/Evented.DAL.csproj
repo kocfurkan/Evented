@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Evented.Domain.csproj" />
+    <ProjectReference Include="..\Evented.Domain\Evented.Domain.csproj" />
   </ItemGroup>
 
 </Project>

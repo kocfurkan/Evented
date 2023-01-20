@@ -39,6 +39,7 @@ namespace Evented.Application.Repositories
         }
         public async Task<T> AddAsync(T item)
         {
+           
             await _db.AddAsync(item);
             await _db.SaveChangesAsync();
             return item;

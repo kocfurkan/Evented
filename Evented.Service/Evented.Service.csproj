@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\Evented.Domain.csproj" />
+    <ProjectReference Include="..\Evented.DAL\Evented.DAL.csproj" />
+    <ProjectReference Include="..\Evented.Domain\Evented.Domain.csproj" />
   </ItemGroup>
 
 </Project>
