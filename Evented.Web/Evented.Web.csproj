@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\Evented.Domain.csproj" />
     <ProjectReference Include="..\Evented.Domain\Evented.Domain.csproj" />
     <ProjectReference Include="..\Evented.Service\Evented.Service.csproj" />
   </ItemGroup>

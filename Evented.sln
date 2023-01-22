@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evented.Web", "Evented.Web\Evented.Web.csproj", "{D0C67598-5B60-4814-94DC-DBB78CFD36A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{314A201B-01B5-42E6-A9BC-22F8A17C4159} = {314A201B-01B5-42E6-A9BC-22F8A17C4159}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evented.DAL", "Evented.DAL\Evented.DAL.csproj", "{314A201B-01B5-42E6-A9BC-22F8A17C4159}"
 EndProject

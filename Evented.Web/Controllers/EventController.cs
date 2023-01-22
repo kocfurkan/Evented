@@ -26,6 +26,7 @@ namespace Evented.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
+         
             var user = usrManager.GetUserId(User);
             var model = eventService.GetUserEvents(user);
             var mapped= mapper.Map<List<EventVM>>(model);

@@ -4,6 +4,7 @@ using Evented.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Evented.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230122201628_EmailAde")]
+    partial class EmailAde
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -368,12 +370,12 @@ namespace Evented.Web.Data.Migrations
                             Image = "X",
                             LastName = "Koc",
                             LockoutEnabled = false,
-                            NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJJyzso/7ZNwDYrC8UKbfcaje5KpqoC/vM5h+Fq8Mi431Z4Qff9EeJYFMhiopJNTlw==",
+                            NormalizedUserName = "MYADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJUEsLEOuHu9Bre7PZIx1nNh0b2XiTSobdJJ3mAvNcTcuAWSsGzLNj/CsdQ6F5r52Q==",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd1",
                             TwoFactorEnabled = false,
-                            UserName = "admin@admin.com"
+                            UserName = "myadmin"
                         },
                         new
                         {
@@ -390,11 +392,11 @@ namespace Evented.Web.Data.Migrations
                             LastName = "Koc",
                             LockoutEnabled = false,
                             NormalizedUserName = "MYUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG2l6yYCLOXm/Nqh7Y9rALiVVxu1DC6PB8kP0YHWgAmHsOZgSawypAIFZ0u95mswTg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELgtEukVc+g1Z4RnKnkMonNL6NR0hizuG+nI0p322HXGoGaBYVZbh4C4iFN0Yn2Epg==",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd9",
                             TwoFactorEnabled = false,
-                            UserName = "user@user.com"
+                            UserName = "myuser"
                         });
                 });
 
