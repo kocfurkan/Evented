@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using Evented.Application.Contracts;
-using Evented.Common.ViewModels;
+using Evented.Domain.Contracts;
 using Evented.Domain.Models;
-using System.Threading.Tasks;
-using Evented.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +25,7 @@ namespace Evented.Web.Controllers
         {
          
             var user = usrManager.GetUserId(User);
-            var model = eventService.GetUserEvents(user);
+            var model =await eventService.GetUserEvents(user);
             var mapped= mapper.Map<List<EventVM>>(model);
             return View(mapped);
         }

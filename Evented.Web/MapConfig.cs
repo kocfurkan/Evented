@@ -1,19 +1,14 @@
 ﻿using AutoMapper;
-using Evented.Common.ViewModels;
-using Evented.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application
+using Evented.Domain.Models;
+
+namespace Evented.Web
 {
-    public class MapConfig:Profile
+    public class MapConfig : Profile
     {
         public MapConfig()
         {
-            CreateMap<Event,EventVM>().ReverseMap();
+            CreateMap<Event, EventVM>().ReverseMap();
 
         }
     }

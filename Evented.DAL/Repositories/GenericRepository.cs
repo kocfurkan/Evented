@@ -1,5 +1,5 @@
-﻿using Evented.Application.Contracts;
-using Evented.Web.Data;
+﻿using Evented.Domain.Contracts;
+using Evented.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evented.Application.Repositories
+namespace Evented.Domain.Repositories
 {
 
     public class GenericRepository<T> : IGenericRepository<T> where T : class

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evented.Application.Contracts
+namespace Evented.Domain.Contracts
 {
     public interface IGenericRepository<T> where T: class
     {

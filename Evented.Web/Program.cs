@@ -1,11 +1,12 @@
 
-using Evented.Application.Contracts;
-using Evented.Application.Repositories;
+using Evented.Domain.Contracts;
 using Evented.Domain.Models;
+using Evented.Domain.Repositories;
 using Evented.Service;
-using Evented.Web.Data;
+using Evented.DAL.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

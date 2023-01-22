@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 
-namespace Evented.Web.Data
+namespace Evented.DAL.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {

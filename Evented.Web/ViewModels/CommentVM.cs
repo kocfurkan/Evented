@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evented.Common.ViewModels
+namespace Evented.Web
 {
     public class CommentVM
     {

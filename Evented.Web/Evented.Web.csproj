@@ -19,12 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Evented.Domain\Evented.Domain.csproj" />
     <ProjectReference Include="..\Evented.Service\Evented.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Identity\Data\" />
   </ItemGroup>
 
 </Project>

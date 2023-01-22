@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evented.Application.Contracts
+namespace Evented.Domain.Contracts
 {
     //Add Task Specific To Event 
     public interface IEventService 

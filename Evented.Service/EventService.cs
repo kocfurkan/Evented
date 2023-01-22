@@ -1,5 +1,5 @@
-﻿using Evented.Application.Contracts;
-using Evented.Application.Repositories;
+﻿using Evented.Domain.Contracts;
+using Evented.Domain.Repositories;
 using Evented.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -75,7 +75,7 @@ namespace Evented.Service
             List<Event> userEvents = new();
             foreach (var item in events)
             {
-                if (item.CreatorUser.Id == userId.ToString())
+                if (item.CreatorId == userId.ToString())
                 {
                     userEvents.Add(item);
                 }
