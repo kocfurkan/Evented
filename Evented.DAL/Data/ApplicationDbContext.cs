@@ -12,7 +12,10 @@ namespace Evented.DAL.Data
             : base(options)
         {
         }
-
+        DbSet<Image> Images { get; set; }
+        DbSet<ImageGallery> ImageGalleries { get; set; }
+        DbSet<Event> Event { get; set; }
+   
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
@@ -102,8 +105,6 @@ namespace Evented.DAL.Data
 
 
         }
-        DbSet<Image> Images { get; set; }   
-        DbSet<ImageGallery> ImageGalleries { get; set; }
-        DbSet<Event> Event { get; set; }
+      
     }
 }

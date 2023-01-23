@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,11 @@ namespace Evented.Domain.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public bool IsValid { get; set; } = true;
+        [DisplayName("Begins At")] 
         public DateTime BeginsAt { get; set; }
+        [DisplayName("Ends At")]
         public DateTime EndsAt { get; set; }
+        [DisplayName("Participant Limit")]
         public int joineeLimit { get; set; }    
         public string CreatorId { get; set; }
         public User CreatorUser { get; set; }

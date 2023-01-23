@@ -13,6 +13,7 @@ namespace Evented.Service
 
     {
         private readonly IGenericRepository<Event> genRepo;
+        
         public EventService(IGenericRepository<Event> _genRepo)
         {
             genRepo = _genRepo;
@@ -35,9 +36,9 @@ namespace Evented.Service
             return genRepo.DeleteAsync(id);
         }
 
-        public Task<bool> EventExists(int id)
+        public async Task<bool> EventExists(int id)
         {
-            return genRepo.Exists(id);
+            return await genRepo.Exists(id);
         }
 
         public Task<List<Event>> GetAllEventsAsync()
@@ -52,6 +53,7 @@ namespace Evented.Service
 
         public Task UpdateEventAsync(Event item)
         {
+          
             return genRepo.UpdateAsync(item);
         }
 
@@ -82,5 +84,10 @@ namespace Evented.Service
             }
             return userEvents;
         }
+
+        //public Task JoinEvent(int eventId)
+        //{
+        //    genRepo.
+        //}
     }
 }

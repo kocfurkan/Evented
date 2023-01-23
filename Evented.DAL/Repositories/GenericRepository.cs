@@ -62,5 +62,6 @@ namespace Evented.Domain.Repositories
             _db.Update(item);
             await _db.SaveChangesAsync();
         }
+     
     }
 }
