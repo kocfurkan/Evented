@@ -25,6 +25,9 @@ namespace Evented.Domain.Models
         public List<Comment>? Comment { get; set; }
         public List<Company>? Companies { get; set; }
 
-       
+       public User()
+        {
+            EventJoined = new List<Event>();
+        }
     }
 }

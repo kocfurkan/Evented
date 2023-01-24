@@ -20,5 +20,7 @@ namespace Evented.Web
         public DateTime EndsAt { get; set; }
         [DisplayName("Participant Limit")]
         public int joineeLimit { get; set; }
+        public int? joineeNumber { get; set; } = 0;
+        public string CreatorId { get; set; }
     }
 }

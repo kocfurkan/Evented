@@ -19,7 +19,7 @@
                         <p class="opacity-50 text-nowrap">@item.BeginsAt -  @item.EndsAt </p>
                     </div>
                     <div class="col-md-4 align-content-end ">
-                        <small class="opacity-50 text-nowrap">0/@item.joineeLimit</small>
+                        <small class="opacity-50 text-nowrap">@item.joineeNumber/@item.joineeLimit</small>
                         <div > <a asp-controller="Event" asp-action="EditEvent" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Edit</a>
                         <a asp-controller="Event" asp-action="DeleteEvent" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Delete</a></div>
                     </div>

@@ -67,7 +67,7 @@ namespace Evented.DAL.Data
                 AccessFailedCount = 0,
                 ConcurrencyStamp = "295770ce-3f4b-4677-b0af-8d200fb60b87",
                 UserName = "user@user.com",
-                NormalizedUserName = "MYUSER",
+                NormalizedUserName = "USER@USER.COM",
                 Email = "user@user.com",
                 SecurityStamp = "a43230f0-c9b2-406b-ab50-cd0905055fd9",
                 PasswordHash = passwordHasher.HashPassword(null, "1234Aa-"),

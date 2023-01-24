@@ -1,66 +1,94 @@
-﻿@model Evented.Web.EventVM
+﻿@using Evented.Domain.Models
+@using Microsoft.AspNetCore.Identity
+@model Evented.Web.EventVM
 
+@inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Detail";
 }
 
 <h1>Detail</h1>
 
-<div>
-    <h4>EventVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Topic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Topic)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BeginsAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BeginsAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndsAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndsAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.joineeLimit)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.joineeLimit)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-controller="Event" asp-action="Join" class="btn btn-primary">Join</a>
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
-</div>
+
+<h4>EventVM</h4>
+<hr />
+@Html.ValidationMessageFor(m => m.Id)
+<form asp-action="JoinEvent">
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+                @Html.HiddenFor(model=>model.Id)
+
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Topic)
+                @Html.HiddenFor(model=>model.Topic)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Topic)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+                @Html.HiddenFor(model=>model.Title)
+
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+                @Html.HiddenFor(model=>model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Location)
+                @Html.HiddenFor(model=>model.Location)
+
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BeginsAt)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.BeginsAt)
+                @Html.HiddenFor(model=>model.BeginsAt)
+
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EndsAt)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EndsAt)
+                @Html.HiddenFor(model=>model.EndsAt)
+
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.joineeLimit )
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.joineeLimit)
+                @Html.HiddenFor(model=>model.joineeLimit)
+
+            </dd>
+            @Html.HiddenFor(model=>model.CreatorId)
+            @Html.HiddenFor(model=>model.joineeNumber)
+        </dl>
+    </div>
+    @if (Model.CreatorId != UserManager.GetUserId(User))
+    {
+        <button type="submit" class="btn btn-primary">Join</button>
+    }
+    <button type="submit" formaction="/Event/LeaveEvent" class="btn btn-primary">Leave</button>
+</form>
+<a asp-action="Index" class="btn btn-primary">Back to List</a>
+
