@@ -43,46 +43,62 @@ namespace Evented.Web.Controllers
         {
             Event myevent = mapper.Map<Event>(events);
             var usr = usrManager.GetUserAsync(User);
-            myevent.U
+            
             int? joineeNumber = myevent.joineeNumber;
-            if (myevent.joineeLimit > myevent.joineeNumber)
+            if (myevent.joineeLimit > myevent.joineeNumber )
             {
-                if (myevent.UserJoined.Count != 0)
+                if (myevent.UsersJoined.Count != 0)
                 {
-                    foreach (var user in myevent.UserJoined)
+                    foreach (var user in myevent.UsersJoined)
                     {
-                        if (user.Id != usr.Result.Id)
+                        if (user.UserId != usr.Result.Id)
                         {
-                            myevent.UserJoined.Add(usr.Result);
+                            myevent.UsersJoined.Add(new UserEvent()
+                            {
+                                UserId = usr.Result.Id,
+                                EventId = myevent.Id,
+                            });
                         }
                         else { ModelState.AddModelError(nameof(events.Id), "You Have Already Joined The Event"); }
                     }
                 }
                 else
                 {
-                    myevent.UserJoined.Add(usr.Result);
+                    myevent.UsersJoined.Add(new UserEvent()
+                    {
+                        User = usr.Result,
+                        Event = myevent,
+
+                    });
+
                 }
             }
-            else { ModelState.AddModelError(nameof(events.Id), "Event Is Full"); }
+            else
+            {
+                ModelState.AddModelError(nameof(events.Id), "Event Is Full");
+                return RedirectToAction("Index");
+            }
 
             myevent.joineeNumber = ++joineeNumber;
             await eventService.UpdateEventAsync(myevent);
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public async Task<IActionResult> LeaveEvent(EventVM myEvent)
+        public async Task<IActionResult> LeaveEvent(EventVM myevent)
         {
 
-            Event myevent = mapper.Map<Event>(myEvent);
+            Event myEvent = mapper.Map<Event>(myevent);
             var usr = usrManager.GetUserAsync(User);
-            //var eventy= await eventService.FindBasedTwoCond(x=>x.UserJoined, x=>x.Id.ToString() == usr.Result.Id);
-
-            int? joineeNumber = myEvent.joineeNumber;
             
-            bool result = myevent.UserJoined.Remove(usr.Result);
-            myevent.joineeNumber = --joineeNumber;
-            await eventService.UpdateEventAsync(myevent);
-            return RedirectToAction("Index");  
+         
+            int? joineeNumber = myevent.joineeNumber;
+
+            Event events =  eventService.GetEventsConditional(myEvent);
+            //???????????
+            events.UsersJoined.Remove((User)events.UsersJoined);
+            events.joineeNumber = --joineeNumber;
+            await eventService.UpdateEventAsync(events);
+            return RedirectToAction("Index");
         }
         public IActionResult CreateEvent()
         {

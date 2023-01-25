@@ -20,8 +20,9 @@ namespace Evented.Domain.Contracts
         Task DeleteEventAsync(int id);
         Task UpdateEventAsync(Event item);
         Task<List<Event>> GetEventsByDate(DateTime StartDate, DateTime EndeDate);
-        Task<List<Event>> GetUserEvents(string userId);
-        //Task<Event> FindBasedTwoCond(Expression<Func<Event, List<User>>> condition, Expression<Func<Event, bool>> condition2);
+        Task<List<Event>> GetUserEvents(string id);
+        Event GetEventsConditional(Event myEvent);
+        //Task<Event> FindBasedTwoCond(Expression<Func<Event, User>> expression);
 
     }
 }

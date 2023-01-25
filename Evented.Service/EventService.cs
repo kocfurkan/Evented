@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using Evented.DAL.Repositories;
 
 namespace Evented.Service
 {
@@ -14,10 +15,11 @@ namespace Evented.Service
 
     {
         private readonly IGenericRepository<Event> genRepo;
-        
-        public EventService(IGenericRepository<Event> _genRepo)
+        private readonly EventRepository eventRepository;
+        public EventService(IGenericRepository<Event> _genRepo, EventRepository _eventRepository)
         {
             genRepo = _genRepo;
+            eventRepository= _eventRepository;
         }
 
         public Task AddBulkEventsAsync(List<Event> items)
@@ -85,19 +87,31 @@ namespace Evented.Service
             }
             return userEvents;
         }
+    
+       public  Event GetEventsConditional(Event events)
+        {
+            return  eventRepository.GetEventsConditional(events);
+        }
 
+     
 
-
-        //public Task<Event> FindBasedTwoCond(Expression<Func<User,List<Event> >> condition, Expression<Func<Event, bool>> condition2)
+        //public async Task<User> FindBasedTwoCond(Expression<Func<Event, User>> expression)
         //{
-        //    return genRepo.FindBasedTwoCond(condition, condition2);
+        //    return await genRepo.FindBasedTwoCond(expression);
         //}
 
-        public async Task<User> GetJoinees(int? id)
-        {
-            Event events = await genRepo.GetAsync(id);
 
-            return;
-        }
+
+        //public Task<Event> FindBasedTwoCond(Expression<Func<User, List<Event>>> condition, Expression<Func<Event, bool>> condition2)
+        //{
+        //    return genRepo.GetUserJoined(condition, condition2);
+        //}
+
+        //public async Task<Event> GetForDelete(int? id)
+        //{
+        //    Event events = await genRepo.GetAsync(id);
+
+
+        //}
     }
 }

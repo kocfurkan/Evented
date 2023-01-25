@@ -6,7 +6,7 @@ using Evented.Service;
 using Evented.DAL.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using Evented.DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped( typeof(EventRepository));
 builder.Services.AddScoped<IEventService, EventService>();
 
 builder.Services.AddAutoMapper(typeof(Program));

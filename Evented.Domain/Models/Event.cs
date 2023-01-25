@@ -32,13 +32,14 @@ namespace Evented.Domain.Models
         public int? joineeNumber { get; set; } =0;
         public string CreatorId { get; set; }
         public User CreatorUser { get; set; }
-        public List<User>? UserJoined { get; set; }
+        public ICollection<UserEvent> UsersJoined { get; set; }
         public List<Comment>? Comments { get; set; }
         public Company? HiredCompany { get; set; }
         public ImageGallery? ImageGallery { get; set; }
+
         public Event()
         {
-            UserJoined = new List<User>();
+            UsersJoined = new List<UserEvent>();
         }
     }
 }

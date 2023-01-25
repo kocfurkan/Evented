@@ -42,7 +42,7 @@ namespace Evented.Domain.Repositories
         }
         public async Task<T> AddAsync(T item)
         {
-           
+
             await _db.AddAsync(item);
             await _db.SaveChangesAsync();
             return item;
@@ -56,7 +56,7 @@ namespace Evented.Domain.Repositories
 
         public async Task<bool> Exists(int id)
         {
-            var item =await GetAsync(id);
+            var item = await GetAsync(id);
             return item != null;
         }
 
@@ -66,21 +66,13 @@ namespace Evented.Domain.Repositories
             await _db.SaveChangesAsync();
         }
 
-        //public Task<T> FindBased(Expression<Func<T, bool>> condition)
-        //{
-        //    return _db.Set<T>().Where(condition);
-        //}
-        //public Task<T?> FindBasedTwoCond(Expression<Func<T, List<T>>> condition, Expression<Func<T, bool>> condition2)
-        //{
 
-        //    return _db.Set<T>().Include(condition).FirstOrDefaultAsync(condition2);
-        //}
 
-         //LEFT HERE
-        public async Task<T> GetUserJoined(Expression<Func<T, bool>> condition, Expression<Func<T, bool>> condition2)
-        {
-            return await _db.Set<T>().Include(condition).FirstOrDefaultAsync(condition2);
-           
-        }
+      
+
+        //public Task<T> FindBasedTwoCond(Expression<Func<T, bool>> condition, Expression<Func<T, bool>> condition2)
+        //{
+        //   return _db.Set<T>().Include(condition).Where(condition2).SingleOrDefaultAsync();
+        //}
     }
 }

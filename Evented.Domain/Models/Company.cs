@@ -20,7 +20,6 @@ namespace Evented.Domain.Models
         public User OwnedBy { get; set; }
         public List<Event> Events { get; set; }
         public List<Notification>? Notifications { get; set; }
-        
         public ImageGallery ImageGallery { get; set; }
         public DateTime CreatedAt { get ; set ; }
         public DateTime UpdatedAt { get ; set ; }

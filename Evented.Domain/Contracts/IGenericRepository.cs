@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Evented.Domain.Contracts
 {
-    public interface IGenericRepository<T> where T: class
+    public interface IGenericRepository<T> where T : class
     {
         Task<T> GetAsync(int? id);
         Task<List<T>> GetAllAsync();
         Task<T> AddAsync(T item);
         Task AddBulkAsync(List<T> items);
-        Task<bool> Exists(int id); 
+        Task<bool> Exists(int id);
         Task DeleteAsync(int id);
         Task UpdateAsync(T item);
-        //Task<T> FindBased(Expression<Func<T, bool>> condition);
-        //Task<T> FindBasedTwoCond(Expression<Func<T, List<T>>> condition, Expression<Func<T, bool>> condition2);
+        //Task<T> FindBasedTwoCond(Expression<Func<T, T>> condition);
+
     }
 }

@@ -20,14 +20,14 @@ namespace Evented.Domain.Models
         public DateTime Birth { get; set; }
         public string? Image { get; set; }   
         public List<Event>? UserCreated { get; set; }
-        public List<Event>? EventJoined { get; set; }
+        public ICollection<UserEvent> EventsJoined { get; set; }    
         public List<Notification>? Notifications { get; set; }
         public List<Comment>? Comment { get; set; }
         public List<Company>? Companies { get; set; }
 
-       public User()
+        public User()
         {
-            EventJoined = new List<Event>();
+            EventsJoined = new List<UserEvent>();
         }
     }
 }
