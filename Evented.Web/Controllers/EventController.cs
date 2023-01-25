@@ -43,7 +43,7 @@ namespace Evented.Web.Controllers
         {
             Event myevent = mapper.Map<Event>(events);
             var usr = usrManager.GetUserAsync(User);
-            int count = myevent.UserJoined.Count;
+            myevent.U
             int? joineeNumber = myevent.joineeNumber;
             if (myevent.joineeLimit > myevent.joineeNumber)
             {
@@ -72,14 +72,14 @@ namespace Evented.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> LeaveEvent(EventVM myEvent)
         {
-            Event myevent = mapper.Map<Event>(myEvent);
-           
-            var usr = usrManager.GetUserAsync(User);
-            int? joineeNumber = myEvent.joineeNumber;
 
+            Event myevent = mapper.Map<Event>(myEvent);
+            var usr = usrManager.GetUserAsync(User);
+            //var eventy= await eventService.FindBasedTwoCond(x=>x.UserJoined, x=>x.Id.ToString() == usr.Result.Id);
+
+            int? joineeNumber = myEvent.joineeNumber;
             
-            myevent.UserJoined.Remove(usr.Result);
-            usr.Result.EventJoined.Remove(myevent);
+            bool result = myevent.UserJoined.Remove(usr.Result);
             myevent.joineeNumber = --joineeNumber;
             await eventService.UpdateEventAsync(myevent);
             return RedirectToAction("Index");  

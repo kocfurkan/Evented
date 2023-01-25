@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Evented.Service
 {
@@ -45,7 +46,7 @@ namespace Evented.Service
         {
            return genRepo.GetAllAsync();
         }
-
+     
         public Task<Event> GetEventAsync(int? id)
         {
             return genRepo.GetAsync(id);
@@ -85,9 +86,18 @@ namespace Evented.Service
             return userEvents;
         }
 
-        //public Task JoinEvent(int eventId)
+
+
+        //public Task<Event> FindBasedTwoCond(Expression<Func<User,List<Event> >> condition, Expression<Func<Event, bool>> condition2)
         //{
-        //    genRepo.
+        //    return genRepo.FindBasedTwoCond(condition, condition2);
         //}
+
+        public async Task<User> GetJoinees(int? id)
+        {
+            Event events = await genRepo.GetAsync(id);
+
+            return;
+        }
     }
 }

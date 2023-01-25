@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,5 +16,7 @@ namespace Evented.Domain.Contracts
         Task<bool> Exists(int id); 
         Task DeleteAsync(int id);
         Task UpdateAsync(T item);
+        //Task<T> FindBased(Expression<Func<T, bool>> condition);
+        //Task<T> FindBasedTwoCond(Expression<Func<T, List<T>>> condition, Expression<Func<T, bool>> condition2);
     }
 }

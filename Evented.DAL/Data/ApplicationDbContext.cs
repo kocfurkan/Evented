@@ -15,6 +15,7 @@ namespace Evented.DAL.Data
         DbSet<Image> Images { get; set; }
         DbSet<ImageGallery> ImageGalleries { get; set; }
         DbSet<Event> Event { get; set; }
+      
    
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -23,11 +24,12 @@ namespace Evented.DAL.Data
             //Configure multiple relation between User And Event
             builder.Entity<Event>().HasOne(e => e.CreatorUser).WithMany(x => x.UserCreated).HasForeignKey(y => y.CreatorId).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<Event>().HasMany(e => e.UserJoined).WithMany(y => y.EventJoined);
+            builder.Entity<User>().HasMany(e => e.EventJoined).WithMany(y => y.UserJoined);
             builder.Entity<Event>().HasMany(e => e.Comments).WithOne(z => z.Event).HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<Company>().HasMany(e => e.Notifications).WithOne(x => x.Company).HasForeignKey(x => x.CompanyId).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<Company>().HasOne(e=>e.ImageGallery).WithOne(x=>x.Company).HasForeignKey<ImageGallery>(id=>id.CompanyId);
             builder.Entity<Event>().HasOne(e => e.ImageGallery).WithOne(x => x.Event).HasForeignKey<ImageGallery>(id => id.EventId);
-
+         
 
             base.OnModelCreating(builder);
 

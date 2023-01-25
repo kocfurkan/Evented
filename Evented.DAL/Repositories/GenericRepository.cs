@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Evented.Domain.Repositories
 {
@@ -22,6 +23,8 @@ namespace Evented.Domain.Repositories
         {
             return await _db.Set<T>().ToListAsync();
         }
+
+
         public async Task DeleteAsync(int id)
         {
             var item = await GetAsync(id);
@@ -62,6 +65,22 @@ namespace Evented.Domain.Repositories
             _db.Update(item);
             await _db.SaveChangesAsync();
         }
-     
+
+        //public Task<T> FindBased(Expression<Func<T, bool>> condition)
+        //{
+        //    return _db.Set<T>().Where(condition);
+        //}
+        //public Task<T?> FindBasedTwoCond(Expression<Func<T, List<T>>> condition, Expression<Func<T, bool>> condition2)
+        //{
+
+        //    return _db.Set<T>().Include(condition).FirstOrDefaultAsync(condition2);
+        //}
+
+         //LEFT HERE
+        public async Task<T> GetUserJoined(Expression<Func<T, bool>> condition, Expression<Func<T, bool>> condition2)
+        {
+            return await _db.Set<T>().Include(condition).FirstOrDefaultAsync(condition2);
+           
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using Evented.Domain.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -22,5 +23,6 @@ namespace Evented.Web
         public int joineeLimit { get; set; }
         public int? joineeNumber { get; set; } = 0;
         public string CreatorId { get; set; }
+        public List<User> UserJoined { get; set; }
     }
 }

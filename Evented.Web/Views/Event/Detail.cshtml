@@ -82,6 +82,7 @@
             </dd>
             @Html.HiddenFor(model=>model.CreatorId)
             @Html.HiddenFor(model=>model.joineeNumber)
+            @Html.HiddenFor(model=>model.UserJoined)
         </dl>
     </div>
     @if (Model.CreatorId != UserManager.GetUserId(User))
