@@ -31,9 +31,14 @@ namespace Evented.Web.Controllers
             return View(mapped);
         }
         public async Task<IActionResult> Detail(int id)
-        {
+        { 
+            var usr = await usrManager.GetUserAsync(User);
             Event myevent = await eventService.GetEventAsync(id);
-            var mappedevent = mapper.Map<EventVM>(myevent);
+            Event myeventJoined =  eventService.GetEventsConditional(myevent);
+
+            var mappedevent = mapper.Map<EventVM>(myeventJoined);
+        
+         
             return View(mappedevent);
         }
 
@@ -42,10 +47,11 @@ namespace Evented.Web.Controllers
         public async Task<IActionResult> JoinEvent(EventVM events)
         {
             Event myevent = mapper.Map<Event>(events);
+           
             var usr = usrManager.GetUserAsync(User);
-            
+          
             int? joineeNumber = myevent.joineeNumber;
-            if (myevent.joineeLimit > myevent.joineeNumber )
+            if (myevent.joineeLimit > myevent.joineeNumber)
             {
                 if (myevent.UsersJoined.Count != 0)
                 {
@@ -68,9 +74,7 @@ namespace Evented.Web.Controllers
                     {
                         User = usr.Result,
                         Event = myevent,
-
                     });
-
                 }
             }
             else
@@ -86,17 +90,19 @@ namespace Evented.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> LeaveEvent(EventVM myevent)
         {
-
             Event myEvent = mapper.Map<Event>(myevent);
-            var usr = usrManager.GetUserAsync(User);
-            
-         
+            var usr = await usrManager.GetUserAsync(User);
+
             int? joineeNumber = myevent.joineeNumber;
 
-            Event events =  eventService.GetEventsConditional(myEvent);
-            //???????????
-            events.UsersJoined.Remove((User)events.UsersJoined);
-            events.joineeNumber = --joineeNumber;
+            Event events = eventService.GetEventsConditional(myEvent);
+            UserEvent JoinedUser = events.UsersJoined.Where(x => x.UserId == usr.Id).SingleOrDefault();
+            events.UsersJoined.Remove(JoinedUser);
+            if (joineeNumber! <= 0)
+            {
+                events.joineeNumber = --joineeNumber;
+            }
+
             await eventService.UpdateEventAsync(events);
             return RedirectToAction("Index");
         }

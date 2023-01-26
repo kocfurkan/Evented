@@ -22,7 +22,6 @@ namespace Evented.Domain.Contracts
         Task<List<Event>> GetEventsByDate(DateTime StartDate, DateTime EndeDate);
         Task<List<Event>> GetUserEvents(string id);
         Event GetEventsConditional(Event myEvent);
-        //Task<Event> FindBasedTwoCond(Expression<Func<Event, User>> expression);
 
     }
 }

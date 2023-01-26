@@ -19,12 +19,12 @@ namespace Evented.Service
         public EventService(IGenericRepository<Event> _genRepo, EventRepository _eventRepository)
         {
             genRepo = _genRepo;
-            eventRepository= _eventRepository;
+            eventRepository = _eventRepository;
         }
 
         public Task AddBulkEventsAsync(List<Event> items)
         {
-           return genRepo.AddBulkAsync(items);
+            return genRepo.AddBulkAsync(items);
         }
 
         public Task<Event> AddEventAsync(Event item)
@@ -46,9 +46,9 @@ namespace Evented.Service
 
         public Task<List<Event>> GetAllEventsAsync()
         {
-           return genRepo.GetAllAsync();
+            return genRepo.GetAllAsync();
         }
-     
+
         public Task<Event> GetEventAsync(int? id)
         {
             return genRepo.GetAsync(id);
@@ -56,7 +56,7 @@ namespace Evented.Service
 
         public Task UpdateEventAsync(Event item)
         {
-          
+
             return genRepo.UpdateAsync(item);
         }
 
@@ -87,13 +87,12 @@ namespace Evented.Service
             }
             return userEvents;
         }
-    
-       public  Event GetEventsConditional(Event events)
+        public Event GetEventsConditional(Event events)
         {
-            return  eventRepository.GetEventsConditional(events);
+            return eventRepository.GetEventsConditional(events);
         }
 
-     
+
 
         //public async Task<User> FindBasedTwoCond(Expression<Func<Event, User>> expression)
         //{

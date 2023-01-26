@@ -40,6 +40,7 @@ namespace Evented.Domain.Models
         public Event()
         {
             UsersJoined = new List<UserEvent>();
+            
         }
     }
 }

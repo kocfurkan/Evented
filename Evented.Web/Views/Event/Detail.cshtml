@@ -82,14 +82,35 @@
             </dd>
             @Html.HiddenFor(model=>model.CreatorId)
             @Html.HiddenFor(model=>model.joineeNumber)
-            @Html.HiddenFor(model=>model.UserJoined)
+            @Html.HiddenFor(model=>model.UsersJoined)
+            @Html.HiddenFor(model=>model.UsersJoined.Count)
         </dl>
     </div>
-    @if (Model.CreatorId != UserManager.GetUserId(User))
-    {
-        <button type="submit" class="btn btn-primary">Join</button>
+    @{
+        if (Model.CreatorId != UserManager.GetUserId(User))
+        {
+            @foreach (var item in Model.UsersJoined)
+            {
+                @if (item.UserId != UserManager.GetUserId(User))
+                {
+                    <button type="submit" class="btn btn-primary">Join</button>
+                }
+                else
+                {
+                    <button type="submit" formaction="/Event/LeaveEvent" class="btn btn-primary">Leave</button>
+                }
+            }
+            @if (Model.UsersJoined.Count == 0)
+            {
+
+                <button type="submit" class="btn btn-primary">Join</button>
+            }
+
+
+        }
     }
-    <button type="submit" formaction="/Event/LeaveEvent" class="btn btn-primary">Leave</button>
+
+
 </form>
 <a asp-action="Index" class="btn btn-primary">Back to List</a>
 

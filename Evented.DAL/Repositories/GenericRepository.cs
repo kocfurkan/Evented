@@ -65,14 +65,5 @@ namespace Evented.Domain.Repositories
             _db.Update(item);
             await _db.SaveChangesAsync();
         }
-
-
-
-      
-
-        //public Task<T> FindBasedTwoCond(Expression<Func<T, bool>> condition, Expression<Func<T, bool>> condition2)
-        //{
-        //   return _db.Set<T>().Include(condition).Where(condition2).SingleOrDefaultAsync();
-        //}
     }
 }

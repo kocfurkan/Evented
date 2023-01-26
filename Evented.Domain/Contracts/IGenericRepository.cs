@@ -16,7 +16,5 @@ namespace Evented.Domain.Contracts
         Task<bool> Exists(int id);
         Task DeleteAsync(int id);
         Task UpdateAsync(T item);
-        //Task<T> FindBasedTwoCond(Expression<Func<T, T>> condition);
-
     }
 }

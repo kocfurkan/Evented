@@ -23,6 +23,6 @@ namespace Evented.Web
         public int joineeLimit { get; set; }
         public int? joineeNumber { get; set; } = 0;
         public string CreatorId { get; set; }
-        public List<User> UserJoined { get; set; }
+        public ICollection<UserEvent> UsersJoined { get; set; }
     }
 }
