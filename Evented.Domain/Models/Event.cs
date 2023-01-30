@@ -16,7 +16,7 @@ namespace Evented.Domain.Models
         public string Topic { get; set; }
         [Required, StringLength(50)]
         public string Title { get; set; }
-        [Required, StringLength(250)]
+        [Required, StringLength(50)]
         public string Description { get; set; }
         [Required, StringLength(200)]
         public string Location { get; set; }
@@ -34,13 +34,13 @@ namespace Evented.Domain.Models
         public User CreatorUser { get; set; }
         public ICollection<UserEvent> UsersJoined { get; set; }
         public List<Comment>? Comments { get; set; }
+        public int? HiredCompanyId { get; set; }  
         public Company? HiredCompany { get; set; }
         public ImageGallery? ImageGallery { get; set; }
 
         public Event()
         {
             UsersJoined = new List<UserEvent>();
-            
         }
     }
 }

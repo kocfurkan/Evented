@@ -19,9 +19,11 @@ namespace Evented.Web.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            var events = await eventService.GetAllEventsAsync();
+            //Creator Name Should Be Passed to Index
+            var events =  eventService.GetEventsConditional();
+           
             var mapped = mapper.Map<List<EventVM>>(events);
             return View(mapped);
         }

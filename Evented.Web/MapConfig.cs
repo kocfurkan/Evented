@@ -9,6 +9,8 @@ namespace Evented.Web
         public MapConfig()
         {
             CreateMap<Event, EventVM>().ReverseMap();
+            CreateMap<Company, CompanyVM>().ReverseMap();
+            CreateMap<Event, EventVMCompany>().ReverseMap();
 
         }
     }

@@ -19,27 +19,23 @@ namespace Evented.Service
 
         public Task AddBulkCompanysAsync(List<Company> items)
         {
-            throw new NotImplementedException();
+            
+            return genRepo.AddBulkAsync(items);
         }
 
-        public Task<Company> AddCompanyAsync(Company item)
+        public async Task<Company> AddCompanyAsync(Company item)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> CompanyExists(int id)
-        {
-            throw new NotImplementedException();
+            return await genRepo.AddAsync(item);
         }
 
         public Task DeleteCompanyAsync(int id)
         {
-            throw new NotImplementedException();
+           return genRepo.DeleteAsync(id);
         }
 
-        public Task<List<Company>> GetAllCompanysAsync()
+        public async Task<List<Company>> GetAllCompanysAsync()
         {
-            throw new NotImplementedException();
+            return await genRepo.GetAllAsync();
         }
 
         public Task<List<Event>> GetCompaniesByFieldOfWork(string fieldofwork)
@@ -47,14 +43,33 @@ namespace Evented.Service
             throw new NotImplementedException();
         }
 
-        public Task<Company> GetCompanyAsync(int? id)
+        public async Task<Company> GetCompanyAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await genRepo.GetAsync(id);
         }
 
         public Task UpdateCompanyAsync(Company item)
         {
+            return genRepo.UpdateAsync(item);
+        }
+
+        public Task<bool> CompanyExists(int id)
+        {
             throw new NotImplementedException();
+        }
+
+        Task<List<Company>> ICompanyService.GetCompaniesByFieldOfWork(string fieldofwork)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Company>> GetUserCompanies(string id)
+        {
+            List<Company> companies = await genRepo.GetAllAsync();
+
+            IEnumerable<Company> userCompanies = companies.Where(x => x.OwnedById == id).ToList();
+
+            return userCompanies;
         }
     }
 }

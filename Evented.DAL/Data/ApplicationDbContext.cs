@@ -28,7 +28,10 @@ namespace Evented.DAL.Data
             builder.Entity<Event>().HasMany(e => e.Comments).WithOne(z => z.Event).HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<Company>().HasMany(e => e.Notifications).WithOne(x => x.Company).HasForeignKey(x => x.CompanyId).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<Company>().HasOne(e => e.ImageGallery).WithOne(x => x.Company).HasForeignKey<ImageGallery>(id => id.CompanyId);
+            builder.Entity<Company>().HasOne(e=>e.OwnedBy).WithMany(x=>x.Companies).HasForeignKey(key=>key.OwnedById);
             builder.Entity<Event>().HasOne(e => e.ImageGallery).WithOne(x => x.Event).HasForeignKey<ImageGallery>(id => id.EventId);
+            builder.Entity<Notification>().HasOne(e=>e.User).WithMany(x=>x.Notifications).HasForeignKey(key=>key.UserId);
+            builder.Entity<Event>().HasOne(e=>e.HiredCompany).WithMany(e=>e.Events).HasForeignKey(key=>key.HiredCompanyId);
 
             base.OnModelCreating(builder);
 

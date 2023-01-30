@@ -15,7 +15,6 @@ namespace Evented.Web.Controllers
         private readonly UserManager<User> usrManager;
         public SignInManager<User> signInManager;
 
-
         public EventController(IEventService _eventService, IMapper _IMapper, UserManager<User> _usrManager, SignInManager<User> _SignInManager)
         {
             eventService = _eventService;
@@ -36,9 +35,8 @@ namespace Evented.Web.Controllers
             Event myevent = await eventService.GetEventAsync(id);
             Event myeventJoined =  eventService.GetEventsConditional(myevent);
 
-            var mappedevent = mapper.Map<EventVM>(myeventJoined);
+            var mappedevent = mapper.Map<EventVMCompany>(myeventJoined);
         
-         
             return View(mappedevent);
         }
 
@@ -47,9 +45,9 @@ namespace Evented.Web.Controllers
         public async Task<IActionResult> JoinEvent(EventVM events)
         {
             Event myevent = mapper.Map<Event>(events);
-           
+
             var usr = usrManager.GetUserAsync(User);
-          
+            
             int? joineeNumber = myevent.joineeNumber;
             if (myevent.joineeLimit > myevent.joineeNumber)
             {
@@ -139,7 +137,7 @@ namespace Evented.Web.Controllers
             await eventService.UpdateEventAsync(myevent);
             return RedirectToAction("Index");
         }
-        //VIEW NOT ADDED
+      
         public async Task<IActionResult> DeleteEvent(int id)
         {
             Event myevent = await eventService.GetEventAsync(id);
@@ -155,6 +153,7 @@ namespace Evented.Web.Controllers
             await eventService.DeleteEventAsync(myevent.Id);
             return RedirectToAction("Index");
         }
+       
     }
 
 }

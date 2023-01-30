@@ -22,5 +22,9 @@ namespace Evented.DAL.Repositories
         {
             return _db.Set<Event>().Include(x => x.UsersJoined).FirstOrDefault(x=>x.Id == myEvent.Id);
         }
+        public List<Event> GetEventsConditional()
+        {
+            return _db.Set<Event>().Include(x => x.CreatorUser).ToList();
+        }
     }
 }

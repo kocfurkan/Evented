@@ -22,6 +22,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped( typeof(EventRepository));
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

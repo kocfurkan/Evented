@@ -16,6 +16,7 @@ namespace Evented.Domain.Contracts
         Task<bool> CompanyExists(int id);
         Task DeleteCompanyAsync(int id);
         Task UpdateCompanyAsync(Company item);
-        Task<List<Event>> GetCompaniesByFieldOfWork(string fieldofwork);
+        Task<List<Company>> GetCompaniesByFieldOfWork(string fieldofwork);
+        Task<IEnumerable<Company>> GetUserCompanies(string id);
     }
 }

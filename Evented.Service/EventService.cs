@@ -44,7 +44,7 @@ namespace Evented.Service
             return await genRepo.Exists(id);
         }
 
-        public Task<List<Event>> GetAllEventsAsync()
+        public Task<List<Event>> GetEventsConditiona()
         {
             return genRepo.GetAllAsync();
         }
@@ -90,6 +90,11 @@ namespace Evented.Service
         public Event GetEventsConditional(Event events)
         {
             return eventRepository.GetEventsConditional(events);
+        }
+
+        public  List<Event> GetEventsConditional()
+        {
+            return  eventRepository.GetEventsConditional();
         }
 
 

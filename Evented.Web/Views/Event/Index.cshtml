@@ -20,8 +20,13 @@
                     </div>
                     <div class="col-md-4 align-content-end ">
                         <small class="opacity-50 text-nowrap">@item.joineeNumber/@item.joineeLimit</small>
-                        <div > <a asp-controller="Event" asp-action="EditEvent" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Edit</a>
-                        <a asp-controller="Event" asp-action="DeleteEvent" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Delete</a></div>
+                        <div>
+                            <a asp-controller="Event" asp-action="Detail" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Detail</a>
+                            <a asp-controller="Event" asp-action="EditEvent" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Edit</a>
+                            <a asp-controller="Event" asp-action="DeleteEvent" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Delete</a>
+                            <a asp-controller="Event" asp-action="HireCompany" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Hire Company</a>
+
+                        </div>
                     </div>
                 </div>
             </div>

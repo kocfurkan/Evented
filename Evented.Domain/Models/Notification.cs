@@ -18,9 +18,11 @@ namespace Evented.Domain.Models
         public DateTime UpdatedAt { get ; set ; }
         public bool IsValid { get ; set ; } = true;
         public bool IsAccepted { get ; set ; } = false;
+        public string UserId { get ; set ; }    
         public User User { get ; set ; }
         public int CompanyId { get ; set ; }    
-        public Company Company { get ; set ; }  
+        public Company Company { get ; set ; }
+        public int EventId { get; set; }
         public Event Event { get ; set ; }
     }
 }

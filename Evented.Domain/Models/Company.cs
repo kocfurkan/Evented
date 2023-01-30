@@ -17,6 +17,7 @@ namespace Evented.Domain.Models
         public string Description { get; set; }
         [Required, StringLength(100), DisplayName("Field of Work")]
         public string FieldofWork { get; set; }
+        public string OwnedById { get; set; }
         public User OwnedBy { get; set; }
         public List<Event> Events { get; set; }
         public List<Notification>? Notifications { get; set; }

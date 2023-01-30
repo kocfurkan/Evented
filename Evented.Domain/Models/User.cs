@@ -11,10 +11,11 @@ namespace Evented.Domain.Models
 {
     public class User : IdentityUser
     {
-        [DisplayName("First Name")]
+        [DisplayName("First Name"), StringLength(50)]
         public string FirstName { get; set; }
-        [DisplayName("Last Name")]
+        [DisplayName("Last Name"), StringLength(50)]
         public string LastName { get; set; }
+        [DisplayName("Last Name"), StringLength(200)]
         public string Address { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime Birth { get; set; }
