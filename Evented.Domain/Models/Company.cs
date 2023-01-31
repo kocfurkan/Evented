@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Evented.Domain.Models
 {
-    public class Company:IBaseModel
+    public class Company : IBaseModel
     {
         public int Id { get; set; }
         [Required, StringLength(50)]
@@ -22,7 +22,11 @@ namespace Evented.Domain.Models
         public List<Event> Events { get; set; }
         public List<Notification>? Notifications { get; set; }
         public ImageGallery ImageGallery { get; set; }
-        public DateTime CreatedAt { get ; set ; }
-        public DateTime UpdatedAt { get ; set ; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public Company()
+        {
+            Events = new List<Event>();
+        }
     }
 }

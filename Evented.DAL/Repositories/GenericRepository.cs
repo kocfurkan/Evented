@@ -62,6 +62,7 @@ namespace Evented.Domain.Repositories
 
         public async Task UpdateAsync(T item)
         {
+
             _db.Update(item);
             await _db.SaveChangesAsync();
         }
