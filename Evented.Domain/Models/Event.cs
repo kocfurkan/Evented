@@ -41,6 +41,7 @@ namespace Evented.Domain.Models
         public Event()
         {
             UsersJoined = new List<UserEvent>();
+            HiredCompany = new Company();   
         }
     }
 }

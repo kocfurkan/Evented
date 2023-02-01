@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using Evented.Domain.Models;
+using Evented.Web.ViewModels;
 
 namespace Evented.Web
 {
@@ -11,7 +12,7 @@ namespace Evented.Web
             CreateMap<Event, EventVM>().ReverseMap();
             CreateMap<Company, CompanyVM>().ReverseMap();
             CreateMap<Event, EventVMCompany>().ReverseMap();
-
+            CreateMap<Notification,NotificationVM>().ReverseMap();
         }
     }
 }

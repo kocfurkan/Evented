@@ -53,7 +53,7 @@ namespace Evented.Web.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comment", (string)null);
                 });
 
             modelBuilder.Entity("Evented.Domain.Models.Company", b =>
@@ -93,7 +93,7 @@ namespace Evented.Web.Data.Migrations
 
                     b.HasIndex("OwnedById");
 
-                    b.ToTable("Company");
+                    b.ToTable("Company", (string)null);
                 });
 
             modelBuilder.Entity("Evented.Domain.Models.Event", b =>
@@ -158,7 +158,7 @@ namespace Evented.Web.Data.Migrations
 
                     b.HasIndex("HiredCompanyId");
 
-                    b.ToTable("Event");
+                    b.ToTable("Event", (string)null);
                 });
 
             modelBuilder.Entity("Evented.Domain.Models.Image", b =>
@@ -180,7 +180,7 @@ namespace Evented.Web.Data.Migrations
 
                     b.HasIndex("ImageGalleryId");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("Evented.Domain.Models.ImageGallery", b =>
@@ -217,7 +217,7 @@ namespace Evented.Web.Data.Migrations
                         .IsUnique()
                         .HasFilter("[EventId] IS NOT NULL");
 
-                    b.ToTable("ImageGalleries");
+                    b.ToTable("ImageGalleries", (string)null);
                 });
 
             modelBuilder.Entity("Evented.Domain.Models.Notification", b =>
@@ -268,7 +268,7 @@ namespace Evented.Web.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notification");
+                    b.ToTable("Notification", (string)null);
                 });
 
             modelBuilder.Entity("Evented.Domain.Models.User", b =>
@@ -416,7 +416,7 @@ namespace Evented.Web.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserEvent");
+                    b.ToTable("UserEvent", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

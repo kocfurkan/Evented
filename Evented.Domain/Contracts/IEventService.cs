@@ -13,7 +13,7 @@ namespace Evented.Domain.Contracts
     public interface IEventService 
     {
         Task<Event> GetEventAsync(int? id);
-        Task<List<Event>> GetEventsConditiona();
+
         Task<Event> AddEventAsync(Event item);
         Task AddBulkEventsAsync(List<Event> items);
         Task<bool> EventExists(int id);
@@ -23,6 +23,7 @@ namespace Evented.Domain.Contracts
         Task<List<Event>> GetUserEvents(string id);
         Event GetEventsConditional(Event myEvent);
         List<Event> GetEventsConditional();
+
 
     }
 }

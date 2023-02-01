@@ -14,8 +14,8 @@ namespace Evented.Domain.Models
         public string Title { get; set; }
         [Required, StringLength(250)]
         public string Description { get; set; }
-        public DateTime CreatedAt { get ; set ; }
-        public DateTime UpdatedAt { get ; set ; }
+        public DateTime CreatedAt { get ; set ; } = DateTime.Now;   
+        public DateTime UpdatedAt { get ; set ; } = DateTime.Now;    
         public bool IsValid { get ; set ; } = true;
         public bool IsAccepted { get ; set ; } = false;
         public string UserId { get ; set ; }    

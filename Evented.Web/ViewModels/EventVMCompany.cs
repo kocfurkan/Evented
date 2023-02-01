@@ -27,6 +27,7 @@ namespace Evented.Web
         public string CreatorId { get; set; }
         public User CreatorUser { get; set; }
         public ICollection<UserEvent> UsersJoined { get; set; }
+        public int? HiredCompanyId { get; set; }
         public Company? HiredCompany { get; set; }
         public ImageGallery? ImageGallery { get; set; }
     }

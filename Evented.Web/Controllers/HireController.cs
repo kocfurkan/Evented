@@ -2,6 +2,7 @@
 using Evented.Domain.Contracts;
 using Evented.Domain.Models;
 using Evented.Service;
+using Evented.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,13 +46,31 @@ namespace Evented.Web.Controllers
             return View(mappedCompany);
         }
         [HttpPost]
-        public IActionResult Hire(int id)
+        public async Task<IActionResult> Hire(int id)
         {
           string idstring = TempData["eventid"].ToString();
           int id2 = Convert.ToInt32(idstring);
-          hireService.Hire(id,id2);
+          string userid =  usrManager.GetUserId(User);
+          await hireService.HireNotification(id,id2,userid);
           return RedirectToAction("Index");
         }
+        //AUTOMAP LIST OF ITEMS ? 
+        public async Task<IActionResult> Notifications()
+        {
+            string userid = usrManager.GetUserId(User);
+            List<Notification> notifications = await hireService.GetNotifications(userid);
+     
+            return View(notifications);
+
+ 
+        }
+
+        public async Task<IActionResult> HireReject(int id)
+        {
+            await hireService.HireReject(id);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

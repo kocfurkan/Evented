@@ -10,8 +10,8 @@ namespace Evented.Domain.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
         public List<Image> Image { get; set; }
         public int? EventId { get; set; }
         public Event? Event { get; set; }
