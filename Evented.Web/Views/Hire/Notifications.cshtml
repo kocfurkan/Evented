@@ -80,8 +80,13 @@
                     @Html.DisplayFor(modelItem => item.EventId)
                 </td>
                 <td>
-                    <a asp-controller="Hire" asp-action="Hire" class="btn btn-primary btn-sm" asp-route-id="@item.CompanyId">Accept</a>
-                    <a asp-controller="Hire" asp-action="HireReject" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Reject</a>
+                    <form asp-action="HireAccept">
+                        <button type="submit" name="accept" asp-controller="Hire" asp-action="HireAccept" class="btn btn-primary btn-sm" asp-route-id="@item.CompanyId">Accept</button>
+                    </form>
+                    <form asp-action="HireReject">
+                        <button type="submit" asp-controller="Hire" asp-action="HireReject" class="btn btn-primary btn-sm" asp-route-id="@item.Id">Reject</button>
+                    </form>
+
                 </td>
             </tr>
         }

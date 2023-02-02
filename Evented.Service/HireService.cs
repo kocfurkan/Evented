@@ -43,9 +43,12 @@ namespace Evented.Service
 
         public async Task Hire(int id, int currentEventId)
         {
+            //GET NOTIF AND SET IS ACCEPTED TO OK
             Event myevent = await evRepo.GetAsync(currentEventId);
+          
 
             myevent.HiredCompanyId = id;
+            
 
             await evRepo.UpdateAsync(myevent);
         }

@@ -26,7 +26,7 @@ namespace Evented.Web.Controllers
             compService = _compService;
             hireService = _hireService;
         }
-       
+
         public async Task<IActionResult> Index(int id)
         {
             TempData["eventid"] = id;
@@ -36,41 +36,50 @@ namespace Evented.Web.Controllers
         }
         public async Task<IActionResult> HireDetail(int id)
         {
-          
-            var usr = await usrManager.GetUserAsync(User);
-            Company companyDetail = await compService.GetCompanyAsync(id);
 
+            var usr = await usrManager.GetUserAsync(User);
+
+            Company companyDetail = await compService.GetCompanyAsync(id);
 
             var mappedCompany = mapper.Map<CompanyVM>(companyDetail);
 
             return View(mappedCompany);
         }
         [HttpPost]
-        public async Task<IActionResult> Hire(int id)
+        public async Task<IActionResult> HireNotification(int id)
         {
-          string idstring = TempData["eventid"].ToString();
-          int id2 = Convert.ToInt32(idstring);
-          string userid =  usrManager.GetUserId(User);
-          await hireService.HireNotification(id,id2,userid);
-          return RedirectToAction("Index");
+            string idstring = TempData["eventid"].ToString();
+            TempData["eventid2"]=idstring;
+            int id2 = Convert.ToInt32(idstring);
+            string userid = usrManager.GetUserId(User);
+            await hireService.HireNotification(id, id2, userid);
+            return RedirectToAction("Index");
         }
         //AUTOMAP LIST OF ITEMS ? 
-        public async Task<IActionResult> Notifications()
+
+    
+        [HttpPost]
+        public async Task<IActionResult> HireAccept(int id)
         {
-            string userid = usrManager.GetUserId(User);
-            List<Notification> notifications = await hireService.GetNotifications(userid);
-     
-            return View(notifications);
-
- 
+            string currentEventId = TempData["eventid2"].ToString();
+            int id2 = Convert.ToInt32(currentEventId);
+            await hireService.Hire(id, id2);
+            return RedirectToAction("Index");
         }
-
+        [HttpPost]
         public async Task<IActionResult> HireReject(int id)
         {
             await hireService.HireReject(id);
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Notifications()
+        {
+            string userid = usrManager.GetUserId(User);
 
+            List<Notification> notifications = await hireService.GetNotifications(userid);
+
+            return View(notifications);
+        }
     }
 }
