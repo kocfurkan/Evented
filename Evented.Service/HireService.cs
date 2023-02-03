@@ -45,12 +45,16 @@ namespace Evented.Service
         {
             //GET NOTIF AND SET IS ACCEPTED TO OK
             Event myevent = await evRepo.GetAsync(currentEventId);
-          
-
+            Notification notif  = db.Set<Notification>().Where(x=> x.EventId==currentEventId && x.CompanyId==id).FirstOrDefault();
+            notif.IsAccepted=true;
             myevent.HiredCompanyId = id;
-            
 
+            db.Set<Notification>().Update(notif);
+            
             await evRepo.UpdateAsync(myevent);
+             await db.SaveChangesAsync();
+
+
         }
 
         public async Task HireReject(int id)

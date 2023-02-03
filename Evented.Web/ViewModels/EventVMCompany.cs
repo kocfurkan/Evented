@@ -30,5 +30,6 @@ namespace Evented.Web
         public int? HiredCompanyId { get; set; }
         public Company? HiredCompany { get; set; }
         public ImageGallery? ImageGallery { get; set; }
+        public List<Comment>? Comments { get; set; }
     }
 }

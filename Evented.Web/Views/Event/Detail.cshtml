@@ -6,9 +6,7 @@
 @{
     ViewData["Title"] = "Detail";
 }
-
 <h1>Detail</h1>
-
 
 <h4>EventVM</h4>
 <hr />
@@ -104,12 +102,37 @@
 
                 <button type="submit" class="btn btn-primary">Join</button>
             }
-
-
         }
     }
-
-
 </form>
 <a asp-action="Index" class="btn btn-primary">Back to List</a>
 
+
+@{
+    foreach (var item in Model.UsersJoined)
+    {
+        if (item.UserId == UserManager.GetUserId(User))
+        {
+            @Html.PartialAsync("_PartialPageComment")
+            ;
+        }
+    }
+}
+<div id="createcomment"></div>
+
+<script type="text/javascript">
+
+    $.ajax ({
+    url: '/ Comment/Create',
+    contentType: 'application/html; charset=utf-8',
+    type: 'GET',
+    dataType: 'html'
+    })
+    .success (function (result) {
+    $('#createcomment').html(result);
+    })
+    .error(function (xhr, status) {
+    alert(status);
+    })
+
+</script>

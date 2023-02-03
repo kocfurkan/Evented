@@ -25,6 +25,7 @@ builder.Services.AddScoped(typeof(EventRepository));
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IHireService, HireService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 
 builder.Services.AddAutoMapper(typeof(Program));
