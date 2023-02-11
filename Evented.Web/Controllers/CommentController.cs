@@ -9,7 +9,7 @@ namespace Evented.Web.Controllers
 {
     public class CommentController : Controller
     {
-        // GET: CommentController
+    
 
         private readonly IMapper mapper;
         private readonly UserManager<User> usrManager;
@@ -29,35 +29,38 @@ namespace Evented.Web.Controllers
             return PartialView("_PartialPageComments", comments);
         }
 
-        // GET: CommentController/Details/5
         public async Task<IActionResult> DetailsAsync(int id)
         {
             Comment comment = await commentService.GetCommentAsync(id); 
             return View();
         }
 
-        // GET: CommentController/Create
+  
         public ActionResult Create()
         {
             return PartialView("_PartialPageCreate");
         }
 
-        // POST: CommentController/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Comment comment)
+        public ActionResult Create(CommentVM commentVM)
         {
+            User usr= usrManager.GetUserAsync(User).Result;
+           
+            var comment = mapper.Map<Comment>(commentVM);
+            comment.User = usr;
+
             commentService.AddCommentAsync(comment);
-            return View();
+            return RedirectToAction("Index");
         }
 
-        // GET: CommentController/Edit/5
+      
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CommentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -72,13 +75,12 @@ namespace Evented.Web.Controllers
             }
         }
 
-        // GET: CommentController/Delete/5
+
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CommentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

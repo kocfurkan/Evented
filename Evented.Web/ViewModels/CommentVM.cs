@@ -12,9 +12,10 @@ namespace Evented.Web
     {
         public int Id { get; set; }
         [Required, StringLength(250)]
-        public int Text { get; set; }
+        public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
         public int EventId { get; set; }
         public Event Event { get; set; }

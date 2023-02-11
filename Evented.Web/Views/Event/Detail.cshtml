@@ -121,18 +121,8 @@
 <div id="createcomment"></div>
 
 <script type="text/javascript">
+       
+        $('#createcomment').load('@Url.Action("Create","Comment")');
 
-    $.ajax ({
-    url: '/ Comment/Create',
-    contentType: 'application/html; charset=utf-8',
-    type: 'GET',
-    dataType: 'html'
-    })
-    .success (function (result) {
-    $('#createcomment').html(result);
-    })
-    .error(function (xhr, status) {
-    alert(status);
-    })
-
+       
 </script>

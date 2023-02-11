@@ -13,6 +13,7 @@ namespace Evented.Web
             CreateMap<Company, CompanyVM>().ReverseMap();
             CreateMap<Event, EventVMCompany>().ReverseMap();
             CreateMap<Notification,NotificationVM>().ReverseMap();
+            CreateMap<Comment,CommentVM>().ReverseMap();
         }
     }
 }
