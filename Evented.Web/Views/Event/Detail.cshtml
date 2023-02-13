@@ -5,6 +5,7 @@
 @inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Detail";
+    ViewData["EventId"] = Model.Id;
 }
 <h1>Detail</h1>
 
@@ -108,21 +109,22 @@
 <a asp-action="Index" class="btn btn-primary">Back to List</a>
 
 
-@{
+<div>@{
     foreach (var item in Model.UsersJoined)
     {
         if (item.UserId == UserManager.GetUserId(User))
         {
-            @Html.PartialAsync("_PartialPageComment")
-            ;
+                <div id="commentlist"></div>
         }
     }
-}
+}</div>
 <div id="createcomment"></div>
 
-<script type="text/javascript">
-       
-        $('#createcomment').load('@Url.Action("Create","Comment")');
 
-       
+<script type="text/javascript">
+
+    $('#createcomment').load('@Url.Action("Create","Comment", ViewData["EventId"] )');
+    $('#commentlist').load('@Url.Action("Index","Comment")');
+
+
 </script>

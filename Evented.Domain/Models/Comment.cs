@@ -9,6 +9,7 @@ namespace Evented.Domain.Models
 {
     public class Comment:IBaseModel
     {
+       
         public int Id { get; set; }
         [Required, StringLength(250)]
         public string Text { get; set; }

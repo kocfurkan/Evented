@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Evented.Service\Evented.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Comment\" />
+  </ItemGroup>
+
 </Project>

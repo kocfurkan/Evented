@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Evented.Domain.Contracts;
 using Evented.Domain.Models;
+using Evented.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Evented.Web.Controllers
 {
@@ -15,18 +17,21 @@ namespace Evented.Web.Controllers
         private readonly UserManager<User> usrManager;
         public SignInManager<User> signInManager;
         private readonly ICommentService commentService;
+        private readonly IEventService eventService;
 
-        public CommentController(IMapper _IMapper, UserManager<User> _usrManager, SignInManager<User> _SignInManager, ICommentService _commentService)
+        public CommentController(IMapper _IMapper, UserManager<User> _usrManager, SignInManager<User> _SignInManager, ICommentService _commentService, IEventService _eventService)
         {
             mapper = _IMapper;
             usrManager = _usrManager;
             signInManager = _SignInManager;
             commentService = _commentService;
+            eventService =_eventService;
         }
         public async Task<IActionResult> Index()
         {
             List<Comment> comments = await commentService.GetAllCommentsAsync();
-            return PartialView("_PartialPageComments", comments);
+            List<CommentVM> commentsList =  mapper.Map<List<CommentVM>>(comments).ToList();
+            return PartialView("_PartialPageComments", commentsList);
         }
 
         public async Task<IActionResult> DetailsAsync(int id)
@@ -44,14 +49,17 @@ namespace Evented.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CommentVM commentVM)
+        public async Task< ActionResult> Create(CommentVM commentVM,int eventId)
         {
             User usr= usrManager.GetUserAsync(User).Result;
-           
-            var comment = mapper.Map<Comment>(commentVM);
-            comment.User = usr;
 
-            commentService.AddCommentAsync(comment);
+            var comment = mapper.Map<Comment>(commentVM);
+            comment.EventId= eventId;
+            comment.User = usr;
+            comment.CreatedAt= DateTime.Now;
+            comment.UpdatedAt= DateTime.Now;
+        
+            await commentService.AddCommentAsync(comment);
             return RedirectToAction("Index");
         }
 
