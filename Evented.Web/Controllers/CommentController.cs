@@ -27,8 +27,9 @@ namespace Evented.Web.Controllers
             commentService = _commentService;
             eventService =_eventService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int EventId)
         {
+            //RETURN COMMENTS BASED ON EVENTID OF THOSE COMMENTS
             List<Comment> comments = await commentService.GetAllCommentsAsync();
             List<CommentVM> commentsList =  mapper.Map<List<CommentVM>>(comments).ToList();
             return PartialView("_PartialPageComments", commentsList);
@@ -41,9 +42,9 @@ namespace Evented.Web.Controllers
         }
 
   
-        public ActionResult Create()
+        public ActionResult Create(int EventId)
         {
-            return PartialView("_PartialPageCreate");
+            return PartialView("_PartialPageCreate", new CommentVM() { EventId = EventId });
         }
 
 
@@ -51,6 +52,7 @@ namespace Evented.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task< ActionResult> Create(CommentVM commentVM,int eventId)
         {
+
             User usr= usrManager.GetUserAsync(User).Result;
 
             var comment = mapper.Map<Comment>(commentVM);
@@ -60,7 +62,7 @@ namespace Evented.Web.Controllers
             comment.UpdatedAt= DateTime.Now;
         
             await commentService.AddCommentAsync(comment);
-            return RedirectToAction("Index");
+            return RedirectToAction("Detail","Event",new { id =eventId} );
         }
 
       

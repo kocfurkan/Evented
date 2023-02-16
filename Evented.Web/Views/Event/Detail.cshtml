@@ -5,7 +5,7 @@
 @inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Detail";
-    ViewData["EventId"] = Model.Id;
+
 }
 <h1>Detail</h1>
 
@@ -109,22 +109,24 @@
 <a asp-action="Index" class="btn btn-primary">Back to List</a>
 
 
-<div>@{
-    foreach (var item in Model.UsersJoined)
-    {
-        if (item.UserId == UserManager.GetUserId(User))
+<div>
+    @{
+        foreach (var item in Model.UsersJoined)
         {
+            if (item.UserId == UserManager.GetUserId(User))
+            {
                 <div id="commentlist"></div>
+            }
         }
     }
-}</div>
+</div>
 <div id="createcomment"></div>
 
 
 <script type="text/javascript">
 
-    $('#createcomment').load('@Url.Action("Create","Comment", ViewData["EventId"] )');
-    $('#commentlist').load('@Url.Action("Index","Comment")');
+    $('#createcomment').load('@Url.Action("Create","Comment",new {EventId= ViewData["EventId"]} )');
 
+    $('#commentlist').load('@Url.Action("Index","Comment", new {EventId = ViewData["EventId"]} )');
 
 </script>

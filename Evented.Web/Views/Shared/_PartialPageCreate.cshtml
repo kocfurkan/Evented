@@ -1,7 +1,5 @@
 ﻿@model Evented.Web.CommentVM
 
-
-
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -9,12 +7,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         
             <div class="form-group">
-
+                <input name="eventId" type="hidden" value="@Model.EventId" />
                 <input asp-for="Text" class="form-control"  placeholder="Comment"/>
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
-         
-         
+
             <div class="form-group">
                 <input name="button" id="button" type="submit" value="Comment" class="btn btn-primary " />
             </div>

@@ -30,7 +30,8 @@ namespace Evented.Web.Controllers
             return View(mapped);
         }
         public async Task<IActionResult> Detail(int id)
-        { 
+        {
+            ViewData["EventId"] = id;
             var usr = await usrManager.GetUserAsync(User);
             Event myevent = await eventService.GetEventAsync(id);
             Event myeventJoined =  eventService.GetEventsConditional(myevent);
