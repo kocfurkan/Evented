@@ -16,5 +16,6 @@ namespace Evented.Domain.Contracts
         Task<bool> CommentExists(int id);
         Task DeleteCommentAsync(int id);
         Task UpdateCommentAsync(Comment item);
+        Task<List<Comment>> GetCommentsConditional(int eventId);
     }
 }

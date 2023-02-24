@@ -49,5 +49,10 @@ namespace Evented.Service
         {
             return commentRepo.UpdateAsync(item);   
         }
+
+        public async Task<List<Comment>> GetCommentsConditional(int id)
+        {
+            return await commentRepo.ReadConditionally(x => x.EventId == id);
+        }
     }
 }

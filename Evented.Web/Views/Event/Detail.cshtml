@@ -113,7 +113,7 @@
     @{
         foreach (var item in Model.UsersJoined)
         {
-            if (item.UserId == UserManager.GetUserId(User))
+            if (item.UserId == UserManager.GetUserId(User) || Model.CreatorId == UserManager.GetUserId(User))
             {
                 <div id="commentlist"></div>
             }

@@ -29,8 +29,8 @@ namespace Evented.Web.Controllers
         }
         public async Task<IActionResult> Index(int EventId)
         {
-            //RETURN COMMENTS BASED ON EVENTID OF THOSE COMMENTS
-            List<Comment> comments = await commentService.GetAllCommentsAsync();
+           
+            List<Comment> comments = await commentService.GetCommentsConditional(EventId);
             List<CommentVM> commentsList =  mapper.Map<List<CommentVM>>(comments).ToList();
             return PartialView("_PartialPageComments", commentsList);
         }

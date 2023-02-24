@@ -66,5 +66,9 @@ namespace Evented.Domain.Repositories
             _db.Update(item);
             await _db.SaveChangesAsync();
         }
+        public async Task<List<T>> ReadConditionally(Expression<Func<T, bool>> condition)
+        {
+            return await _db.Set<T>().Where(condition).ToListAsync();
+        }
     }
 }

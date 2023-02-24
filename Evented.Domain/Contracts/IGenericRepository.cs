@@ -16,5 +16,6 @@ namespace Evented.Domain.Contracts
         Task<bool> Exists(int id);
         Task DeleteAsync(int id);
         Task UpdateAsync(T item);
+        Task<List<T>> ReadConditionally(Expression<Func<T, bool>> condition);
     }
 }
